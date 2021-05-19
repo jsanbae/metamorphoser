@@ -1,4 +1,4 @@
-
+![Travis (.org)](https://img.shields.io/travis/jsan5709/metamorphoser) ![GitHub issues](https://img.shields.io/github/issues/jsan5709/metamorphoser) ![GitHub](https://img.shields.io/github/license/jsan5709/metamorphoser)
 # Metamorphoser :bug: :butterfly:
 
 Es un librería diseñada para manipular arreglos asociativos (associative arrays) en varias etapas.
