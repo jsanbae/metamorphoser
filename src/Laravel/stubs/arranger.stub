@@ -1,0 +1,19 @@
+<?php
+
+namespace DummyNamespace;
+
+use \Jsanbae\Metamorphoser\Dataset;
+use \Jsanbae\Metamorphoser\Arrangers\AbstractArranger;
+
+class DummyClass extends AbstractArranger {
+
+    public function arrange(Dataset $_dataset):Dataset
+    {
+        $data = $_dataset->getData();
+
+        $arrange = $data;
+
+        return new Dataset($arrange);
+    }
+
+}

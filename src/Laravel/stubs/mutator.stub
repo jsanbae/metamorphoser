@@ -1,0 +1,20 @@
+<?php
+
+namespace DummyNamespace;
+
+use \Jsanbae\Metamorphoser\Mutators\AbstractMutator;
+
+class DummyClass extends AbstractMutator
+{
+    /**
+     * Set Filters based on Waavi/Sanitizer (https://github.com/waavi/sanitizer) Filters
+     * 
+     * @return array
+     */
+    protected function setFilters():array
+    {
+        $filters = [];
+
+        return $filters;
+    }
+}

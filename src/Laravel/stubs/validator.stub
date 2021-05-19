@@ -1,0 +1,19 @@
+<?php
+
+namespace DummyNamespace;
+
+use \Jsanbae\Metamorphoser\Dataset;
+use \Jsanbae\Metamorphoser\DataError;
+use \Jsanbae\Metamorphoser\Validators\AbstractValidator;
+
+class DummyClass extends AbstractValidator {
+
+    public function validate(Dataset $_dataset):Dataset
+    {
+        $data = $_dataset->getData();
+        $errors = [];
+
+        return new Dataset($_dataset->getData(), $_dataset->isFiltered(), $errors);
+    }
+
+}

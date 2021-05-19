@@ -1,0 +1,1 @@
+C:37:"PHPUnit\Runner\DefaultTestResultCache":183:{a:2:{s:7:"defects";a:1:{s:34:"UnitTest::test_should_arrange_data";i:4;}s:5:"times";a:2:{s:35:"UnitTest::test_should_validate_data";d:0;s:34:"UnitTest::test_should_arrange_data";d:0;}}}

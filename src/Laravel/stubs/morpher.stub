@@ -1,0 +1,27 @@
+<?php 
+
+namespace DummyNamespace;
+
+use \Jsanbae\Metamorphoser\Pipeline;
+use \Jsanbae\Metamorphoser\AbstractMorpher;
+
+use DummyNamespace\Arrangers\DummyNameArranger;
+use DummyNamespace\Mutators\DummyNameMutator;
+use DummyNamespace\Filters\DummyNameFilter;
+use DummyNamespace\Validators\DummyNameValidator;
+
+class DummyClass extends AbstractMorpher {
+
+
+    public function setPipeline():Pipeline
+    {
+        $pipeline = new Pipeline();
+        $pipeline->addPipe(new DummyNameArranger());
+        $pipeline->addPipe(new DummyNameMutator());
+        $pipeline->addPipe(new DummyNameFilter());
+        $pipeline->addPipe(new DummyNameValidator());
+
+        return $pipeline;
+    }
+
+}

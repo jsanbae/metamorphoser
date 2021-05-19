@@ -1,0 +1,31 @@
+{
+    "name": "jsanbae/metamorphoser",
+    "description": "Procesa tus arrays en diferentes etapas",
+    "type": "library",
+    "version": "1.0.0",
+    "keywords": ["csv", "array", "collections", "process"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Javier Sanchez",
+            "email": "jsan5709@hotmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Jsanbae\\Metamorphoser\\" : "src/"
+        }
+    },
+    "require": {
+        "php": "^7.3|^8.0",
+        "jsanbae/sanitizer" : "dev-master"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "9.4.*"
+    },
+    "extra": {
+        "laravel":{
+            "providers": "Jsanbae\\Metamorphoser\\Laravel\\MetamorphoserServiceProvider"
+        }
+    }
+}

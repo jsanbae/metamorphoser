@@ -1,0 +1,18 @@
+<?php
+
+namespace DummyNamespace;
+
+use \Jsanbae\Metamorphoser\Dataset;
+use \Jsanbae\Metamorphoser\Filters\AbstractFilter;
+
+class DummyClass extends AbstractFilter {
+
+    public function filter(Dataset $_dataset):Dataset
+    {
+        $data = $_dataset->getData();
+        $filtered = false;
+
+        return new Dataset($data, $filtered);
+    }
+
+}
