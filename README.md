@@ -11,7 +11,7 @@ Metamorphoser es compatible y testeado en PHP 7.3 y superiores.
 
 Esta librería puede ser instalada a través de [composer](https://www.getcomposer.org) usando el siguiente comando:
 ```
-composer jsanbae/metamorphoser
+composer require jsanbae/metamorphoser
 ```
 
 ## Partes del Metamorphoser
