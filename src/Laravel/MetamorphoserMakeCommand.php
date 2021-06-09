@@ -271,6 +271,6 @@ class MetamorphoserMakeCommand extends GeneratorCommand
     
         $name = strtolower($name);
 
-        return in_array($name, $this->reservedNames);
+        return in_array($name, $reservedNames);
     }
 }
