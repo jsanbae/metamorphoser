@@ -90,7 +90,7 @@ class MetamorphoserMakeCommand extends GeneratorCommand
             } else {
                 $isReserved = $this->isReservedNameFallback($class['name']);
             }
-            
+
             if ($isReserved) {
                 $this->error('The name "'.$class['name'].'" is reserved by PHP.');
 
@@ -117,8 +117,11 @@ class MetamorphoserMakeCommand extends GeneratorCommand
             // stub files so that it gets the correctly formatted namespace and class name.
             $this->makeDirectory($path);
 
-            $this->files->put($path, $this->sortImports($this->buildClassStub($name, $class['stub'])));
-
+            if(method_exists($this,"sortImports")) {
+                $this->files->put($path, $this->sortImports($this->buildClassStub($name, $class['stub'])));
+            } else {
+                $this->files->put($path, $this->sortImportsFallback($this->buildClassStub($name, $class['stub'])));
+            }
             $this->info($name.' created successfully.');
 
         }
@@ -191,7 +194,7 @@ class MetamorphoserMakeCommand extends GeneratorCommand
 
     /**
      * Checks whether the given name is reserved.
-     * Fallback method for verision > 7.x
+     * Fallback method for Laravel version < 7.x
      *
      * @param  string  $name
      * @return bool
@@ -273,4 +276,24 @@ class MetamorphoserMakeCommand extends GeneratorCommand
 
         return in_array($name, $reservedNames);
     }
+
+    /**
+     * Alphabetically sorts the imports for the given stub.
+     * Fallback method for Laravel version < 7.x
+     * @param  string  $stub
+     * @return string
+     */
+    private function sortImportsFallback($stub)
+    {
+        if (preg_match('/(?P<imports>(?:use [^;]+;$\n?)+)/m', $stub, $match)) {
+            $imports = explode("\n", trim($match['imports']));
+
+            sort($imports);
+
+            return str_replace(trim($match['imports']), implode("\n", $imports), $stub);
+        }
+
+        return $stub;
+    }
+
 }
