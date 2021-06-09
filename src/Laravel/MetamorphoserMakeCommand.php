@@ -85,7 +85,13 @@ class MetamorphoserMakeCommand extends GeneratorCommand
             // First we need to ensure that the given name is not a reserved word within the PHP
             // language and that the class name will actually be valid. If it is not valid we
             // can error now and prevent from polluting the filesystem using invalid files.
-            if ($this->isReservedName($class['name'])) {
+            if(method_exists($this,"isReservedName")) {
+                $isReserved = $this->isReservedName($class['name']);
+            } else {
+                $isReserved = $this->isReservedNameFallback($class['name']);
+            }
+            
+            if ($isReserved) {
                 $this->error('The name "'.$class['name'].'" is reserved by PHP.');
 
                 return false;
@@ -181,5 +187,90 @@ class MetamorphoserMakeCommand extends GeneratorCommand
         }
 
         return $this;
+    }
+
+    /**
+     * Checks whether the given name is reserved.
+     * Fallback method for verision > 7.x
+     *
+     * @param  string  $name
+     * @return bool
+     */
+    protected function isReservedNameFallback($name)
+    {
+        $reservedNames = [
+            '__halt_compiler',
+            'abstract',
+            'and',
+            'array',
+            'as',
+            'break',
+            'callable',
+            'case',
+            'catch',
+            'class',
+            'clone',
+            'const',
+            'continue',
+            'declare',
+            'default',
+            'die',
+            'do',
+            'echo',
+            'else',
+            'elseif',
+            'empty',
+            'enddeclare',
+            'endfor',
+            'endforeach',
+            'endif',
+            'endswitch',
+            'endwhile',
+            'eval',
+            'exit',
+            'extends',
+            'final',
+            'finally',
+            'fn',
+            'for',
+            'foreach',
+            'function',
+            'global',
+            'goto',
+            'if',
+            'implements',
+            'include',
+            'include_once',
+            'instanceof',
+            'insteadof',
+            'interface',
+            'isset',
+            'list',
+            'namespace',
+            'new',
+            'or',
+            'print',
+            'private',
+            'protected',
+            'public',
+            'require',
+            'require_once',
+            'return',
+            'static',
+            'switch',
+            'throw',
+            'trait',
+            'try',
+            'unset',
+            'use',
+            'var',
+            'while',
+            'xor',
+            'yield',
+        ];
+    
+        $name = strtolower($name);
+
+        return in_array($name, $this->reservedNames);
     }
 }
