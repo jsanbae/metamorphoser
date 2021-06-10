@@ -8,6 +8,8 @@ use Jsanbae\Metamorphoser\Contracts\Arranger;
 
 abstract class AbstractArranger extends PipeHandler implements Arranger {
 
+    protected $arranger = null;
+
     /**
      * Arrange the data
      * 
@@ -27,7 +29,11 @@ abstract class AbstractArranger extends PipeHandler implements Arranger {
      */
     public function handle(Dataset $_dataset):Dataset
 	{
-		return parent::handle($this->arrange($_dataset));
+        if ($this->arranger) {
+            return parent::handle($this->arranger->arrange($_dataset));
+        } else {
+            return parent::handle($this->arrange($_dataset));
+        }
 	}
 
 }

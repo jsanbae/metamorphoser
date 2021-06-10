@@ -8,6 +8,8 @@ use Jsanbae\Metamorphoser\Contracts\Validator;
 
 abstract class AbstractValidator extends PipeHandler implements Validator {
 
+    protected $validator = null;
+
     /**
      * validate the data
      * 
@@ -27,7 +29,12 @@ abstract class AbstractValidator extends PipeHandler implements Validator {
      */
     public function handle(Dataset $_dataset):Dataset
 	{
-		return parent::handle($this->validate($_dataset));
+        if ($this->validator) {
+            return parent::handle($this->validator->validate($_dataset));
+        } else {
+            return parent::handle($this->validate($_dataset));
+        }
+
 	}
 
 }

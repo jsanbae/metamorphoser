@@ -10,6 +10,8 @@ use Jsanbae\Metamorphoser\Contracts\Mutator;
 
 abstract class AbstractMutator extends PipeHandler implements Mutator {
 
+    protected $mutator = null;
+
     /**
      * Mutate the data
      * 
@@ -34,7 +36,11 @@ abstract class AbstractMutator extends PipeHandler implements Mutator {
      */
     public function handle(Dataset $_dataset):Dataset
 	{
-		return parent::handle($this->mute($_dataset));
+        if ($this->mutator) {
+            return parent::handle($this->mutator->mute($_dataset));
+        } else {
+            return parent::handle($this->mute($_dataset));
+        }
 	}
 
     /**

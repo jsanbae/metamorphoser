@@ -8,6 +8,8 @@ use Jsanbae\Metamorphoser\Contracts\Filter;
 
 abstract class AbstractFilter extends PipeHandler implements Filter {
 
+    protected $filter = null;
+
     /**
      * Filter the data
      * 
@@ -27,7 +29,11 @@ abstract class AbstractFilter extends PipeHandler implements Filter {
      */
     public function handle(Dataset $_dataset):Dataset
 	{
-		return parent::handle($this->filter($_dataset));
+		if ($this->filter) {
+            return parent::handle($this->filter->filter($_dataset));
+        } else {
+            return parent::handle($this->filter($_dataset));
+        }
 	}
 
 }
