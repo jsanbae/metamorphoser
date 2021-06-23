@@ -78,7 +78,7 @@ abstract class AbstractMorpher implements MorphProcess {
         }
 
         foreach ($file_data as $line) {
-            $data[] = str_getcsv($line, $_separator);
+            $data[] = str_getcsv(str_replace($_separator, '', $line), $_separator);
         }
 
         return $this->morph($data);
