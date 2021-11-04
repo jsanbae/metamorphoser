@@ -21,12 +21,19 @@ class Dataset {
      * @var
      */
     private $errors;
+    
+    /**
+     * Outputs Collector
+     * @var
+     */
+    private $customOutputs;
 
-    public function __construct(array $_data, bool $_isFiltered = false, array $_errors = [])
+    public function __construct(array $_data, bool $_isFiltered = false, array $_errors = [], array $_customOutputs = [])
     {
         $this->data = $_data;
         $this->isFiltered = $_isFiltered;
         $this->errors = $_errors;
+        $this->customOutputs = $_customOutputs;
     }
 
     public function getData():array
@@ -47,6 +54,11 @@ class Dataset {
     public function isFiltered():bool
     {
         return $this->isFiltered;
+    }
+    
+    public function getCustomOutputs():array
+    {
+        return $this->customOutputs;
     }
 
 }
