@@ -60,5 +60,10 @@ class Dataset {
     {
         return $this->customOutputs;
     }
+    
+    public function hasCustomOutputs():bool
+    {
+        return (count($this->customOutputs)) ? true : false;
+    }
 
 }
