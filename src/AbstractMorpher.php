@@ -15,7 +15,7 @@ abstract class AbstractMorpher implements MorphProcess {
     /**
      * @var array
      */    
-    private $dataTreated = ['data' => [], 'errors' => [], 'filtered' => []];
+    private $dataTreated = ['data' => [], 'errors' => [], 'filtered' => [], 'customOutputs' => []];
 
     /**
      * Set the pipes order for metamorph data
@@ -51,6 +51,9 @@ abstract class AbstractMorpher implements MorphProcess {
                 }
                 if ($datasetProcessed->hasErrors()) {
                     $this->dataTreated['errors'][$line_index] = $datasetProcessed->getErrors();
+                }
+                if ($datasetProcessed->hasCustomOutputs()) {
+                    $this->dataTreated['customOutputs'][$line_index] = $datasetProcessed->getCustomOutputs();
                 }
             } else {
                 $this->dataTreated['data'][] = $dataset;
